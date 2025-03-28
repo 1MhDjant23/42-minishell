@@ -52,7 +52,7 @@ void	ft_readline(char *line, t_minishel data)
 	{
 		g_sig = 0;
 		signals_hand(parent);
-		line = readline(""BRED"$"RSET"");
+		line = readline("〈☞⚔️〉"BRED"$"RSET"");
 		if (!line)
 		{
 			printf("exit\n");

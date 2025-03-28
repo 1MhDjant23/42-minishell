@@ -1,60 +1,105 @@
-NAME = minishell
+#  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣦⣴⣶⣾⣿⣶⣶⣶⣶⣦⣤⣄⠀⠀⠀⠀⠀⠀⠀                                              
+#  ⠀⠀⠀⠀⠀⠀⠀⢠⡶⠻⠛⠟⠋⠉⠀⠈⠤⠴⠶⠶⢾⣿⣿⣿⣷⣦⠄⠀⠀⠀                𓐓  Makefile 𓐔           
+#  ⠀⠀⠀⠀⠀⢀⠔⠋⠀⠀⠤⠒⠒⢲⠀⠀⠀⢀⣠⣤⣤⣬⣽⣿⣿⣿⣷⣄⠀⠀                                              
+#  ⠀⠀⠀⣀⣎⢤⣶⣾⠅⠀⠀⢀⡤⠏⠀⠀⠀⠠⣄⣈⡙⠻⢿⣿⣿⣿⣿⣿⣦⠀ Student: mait-taj <mait-taj@student.1337.ma> 
+#  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
+#  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
+#  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇      Created: 2025/03/28 16:57:09 by mait-taj
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇      Updated: 2025/03/28 16:57:16 by mait-taj
+#  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
+#  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
+#  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
+#  ⠀⠀⠀⠀⠀⡄⠀⠀⠀⠘⢧⡀⠀⠀⠸⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠐⠋⠀⠀⠀                           𓄂 mait-taj𓆃  
+#  ⠀⠀⠀⠀⠀⠘⠄⣀⡀⠸⠓⠀⠀⠀⠠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                              
 
-SRC = exec/utils.c exec/minishell.c exec/builtins.c    exec/execute.c\
-    parsers/Lexer_new.c parsers/lexer_utils.c parsers/parse.c parsers/utilsp.c\
-    parsers/main.c    parsers/init_y.c    parsers/syntax.c    parsers/syntax_error.c    parsers/cut.c\
-	parsers/lexer_ut.c	parsers/parse_add.c	parsers/parse_env.c	parsers/parse_utils.c	parsers/parse_free.c\
-	parsers/parse_cut.c\
-    exec/export.c exec/utils1.c exec/utils_v1.c exec/cleanner.c exec/error_handling.c\
-    exec/exec_utils.c exec/ft_echo.c exec/ft_cd.c exec/execut_v1.c exec/pipe_handling.c\
-    exec/ft_redirection.c exec/herdoc.c exec/handl_signal.c exec/ft_pwd.c exec/ft_exit.c\
-	exec/execve_func.c exec/ft_env.c exec/herdoc_utils.c exec/herdoc_utils2.c exec/ft_unset.c\
-	exec/step_one_to_exec.c\
 
-LIBFT = libft/libft.a
+#===============| < Colors: > |=================#
 
-H_LIBFT = libft/libft.h
+# Reset
+RESET = \033[0m
+# Regular Colors
+BLACK = \033[0;30m
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+# Bold
+BBLACK = \033[1;30m
+BRED = \033[1;31m
+BGREEN = \033[1;32m
+BBLUE = \033[1;34m
+BPURPLE = \033[1;35m
+BCYAN = \033[1;36m
+BWHITE = \033[1;37m
+# Underline
+UBLACK = \033[4;30m
 
-HEADER = minishell.h
-
-HEADER2 = exec/structs.h
-
+#===============| < CC:Compiler: > |=================#
 CC = cc
 
-OBJ = $(addprefix obj/, $(SRC:.c=.o))
+CFLAGS = -Wall -Wextra -Werror
+
+#===============| < NAME: > |=================#
+
+NAME = minishell
+
+#===============| < Sources: > |=================#
+
+SRC = $(shell find exec parsers -name '*.c')
+
+INCLUDE = $(shell find . -name '*.h')
+
+LIBFT = libft/libft.a
 
 INRL = -I/Users/mait-taj/.brew/include/
 
 LNRL= -lreadline -L/Users/mait-taj/.brew/lib/
 
-CFLAGS = -Wall -Wextra -Werror
+OBJ = $(addprefix obj/, $(SRC:.c=.o))
 
-all: $(NAME) logo
 
-obj/%.o: %.c $(HEADER) $(HEADER2) $(H_LIBFT)
+#===============| < Rules: > |=================#
+
+all: logo signature1 $(NAME) signature
+
+obj/%.o: %.c $(INCLUDE)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INRL) -c $< -o $@
 
 $(NAME): $(OBJ)
 	@make -C libft/
-	@$(CC) $(CFLAGS) $(LIBFT) ${INRL} ${LNRL} $(SRC)   -o $(NAME)
-	@echo "\033[0;34m[the project compiled successfully]\033[0m\n"	
-logo:
-	@printf "\033[0;36m"
-	@printf "\n ▄▄▄▄  ▄ ▄▄▄▄  ▄  ▄▄▄ ▐▌   ▗▞▀▚▖█ █ "
-	@printf "\n █ █ █ ▄ █   █ ▄ ▀▄▄  ▐▌   ▐▛▀▀▘█ █ "
-	@printf "\n █   █ █ █   █ █ ▄▄▄▀ ▐▛▀▚▖▝▚▄▄▖█ █ "
-	@printf "\n       █       █      ▐▌ ▐▌     █ █ "
-	@printf "\033[0m \n"
+	@$(CC) $(CFLAGS) $(LIBFT) ${INRL} ${LNRL} $(SRC) -o $(NAME)
+	@echo "$(BBLUE)🚀 [The project compiled successfully] 🎉$(RES)\n"	
 
 clean:
 	@make clean -C libft/
 	@rm -rf obj/exec obj/parsers
+	@printf "$(RED)🧹 [ all objects files cleaned ] 🗑️🧽$(RESET)\n"
 
 fclean: clean
 	@make fclean -C libft/
 	@rm -f $(NAME)
+	@printf "$(BRED)🧹 [ The project cleaned successfully ] 🎉$(RESET)\n"
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#===============| < Logo && signature: > |=================#
+
+logo:
+	@printf "$(BGREEN)"
+	@printf "\n ▄▄▄▄  ▄ ▄▄▄▄  ▄  ▄▄▄ ▐▌   ▗▞▀▚▖█ █ "
+	@printf "\n █ █ █ ▄ █   █ ▄ ▀▄▄  ▐▌   ▐▛▀▀▘█ █ "
+	@printf "\n █   █ █ █   █ █ ▄▄▄▀ ▐▛▀▚▖▝▚▄▄▖█ █ "
+	@printf "\n       █       █      ▐▌ ▐▌     █ █ $(RESET)\n"
+
+signature:
+	@printf "\n$(BBLACK)©️ All rights reserved to $(UBLACK) mait-taj $(RESET) $(BBLACK)&&$(UBLACK) ysouhail$(RESET)\n"
+
+signature1:
+	@printf "\n$(BLACK)🛠️🔧powered by: $(BBLUE)mait-taj && ysouhail$(RESET)\n"
+#===============| < END: > |=================#
